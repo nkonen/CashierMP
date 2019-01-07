@@ -1,0 +1,92 @@
+package cashier;
+
+import java.util.Scanner;
+
+public class Cashier {
+
+    public static void main(String[] args) {
+        Scanner txtRdr = new Scanner(System.in);
+        Scanner numRdr = new Scanner(System.in);
+        
+        String response;
+        
+        int quantity1 = 0;
+        int quantity2 = 0;
+        int quantity3 = 0;
+        int quantity4 = 0;
+        int quantity5 = 0;
+        
+        double subtotal = 0;
+        double total = 0;
+        double price = 0;
+        double cost = 0;
+        double tax = 0;
+        double payment = 0;
+        double change = 0;
+        
+        System.out.println("Hello! Welcome to KoneDog's Meat Shack!");
+        System.out.println("Please select something from our menu:");
+        System.out.println("1. Cheeseburger ($8.99)");
+        System.out.println("2. Italian Sausage ($7.99)");
+        System.out.println("3. Hot Dog ($6.99)");
+        System.out.println("4. Bag O' Fries ($4.99)");
+        System.out.println("5. Fountain Drink ($2.99)");
+        
+        System.out.println("");
+        System.out.print("Please enter your name: ");
+        String name = txtRdr.nextLine();
+        
+        do{
+            System.out.println("");
+            System.out.print("Please enter your item number: ");
+            int item = numRdr.nextInt();
+            System.out.print("Please enter the quantity: ");
+            int quantity = numRdr.nextInt();
+            switch(item){
+                case 1:
+                    price = 8.99;
+                    quantity1 += quantity;
+                    break;
+                case 2:
+                    price = 7.99;
+                    quantity2 += quantity;
+                    break;
+                case 3:
+                    price = 6.99;
+                    quantity3 += quantity;
+                    break;
+                case 4:
+                    price = 4.99;
+                    quantity4 += quantity;
+                    break;
+                case 5:
+                    price = 2.99;
+                    quantity5 += quantity;
+                    break;
+            }
+            
+            cost = price * quantity;
+            subtotal += cost;
+            
+            System.out.print("Would you like to buy more items? ");
+            response = txtRdr.nextLine();
+            
+        }while(response.equals("Yes"));
+        
+        tax = subtotal * .07;
+        total = subtotal + tax;
+        
+        System.out.println("You ordered " + quantity1 + " cheeseburgers, " + quantity2 + " italian sausages, " + quantity3 + " hot dogs, " + quantity4 + " bag o' fries, and " + quantity5 + " drinks.");
+        System.out.print("Your subtotal is $" + subtotal + ". ");
+        System.out.printf("Your tax is $%4.2f %n",tax);
+        System.out.printf("Your total is $%4.2f %n", total);
+        System.out.print("Payment Amount: ");
+        payment = numRdr.nextDouble();
+        change = payment - total;
+        System.out.printf("Your change is $%4.2f %n", change);
+        System.out.println("Thank you for your order, " + name + "!");
+        
+        
+    }
+    
+}
